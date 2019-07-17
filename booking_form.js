@@ -26,6 +26,7 @@ const setButtonPrice = totalPrice => {
   document.getElementById('submit').value = `Pay ${totalPrice / 100}€`;
 };
 
+/*
 const disableMinus = count => {
   if (count < 2) {
     // minus.removeAttribute('href');
@@ -36,10 +37,12 @@ const disableMinus = count => {
     minus.disabled = true;
   }
 };
+*/
 
 const getCurrentData = e => {
   // offset is number to increment/decrement, here 1
-  let offset = e.currentTarget.dataset.offset;
+  const btn = e.currentTarget;
+  let offset = btn.dataset.offset;
   offset = parseInt(offset, 10);
 
   let unitPriceCents = document.querySelector('#price').dataset.amountCents;
@@ -47,19 +50,30 @@ const getCurrentData = e => {
 
   const counter = document.querySelector('#counter');
   let count = parseInt(counter.dataset.count, 10) + offset;
-  updateCount(counter, count);
+  // updateCount(counter, count);
+
+  // check if offset < 2 and if so stop everything
+  if (btn.classList.contains('minus')) {
+    if (count < 1) {
+      console.log(count);
+      return;
+    } else {
+      updateCount(counter, count);
+    }
+  } else {
+    updateCount(counter, count);
+  }
 
   // what is current price?
   const totalPrice = count * unitPriceCents;
   setInputPrice(totalPrice);
   setButtonPrice(totalPrice);
 
-  disableMinus(count);
+  // disableMinus(count);
 };
 
 const setEventListener = button => {
   button.addEventListener('click', e => {
-    // console.log(e);
     getCurrentData(e);
   });
 };
