@@ -6,13 +6,19 @@ Then when a button is clicked we get the current values of:
     data-count
     textContent of #count
 Set values of:
-    data-count, textContent of #count, input[price-input]-value, input[submit]-value
-
+    data-count, textContent of #count,
+    input[price-input]-value, input[submit]-value
+Then make sure u can't go below 1 offset/person in display
 */
 
 const updateCount = (counter, count) => {
   counter.dataset.count = count;
   counter.innerText = count;
+};
+
+// now price in cents in input #price-input
+const setInputPrice = totalPrice => {
+  document.getElementById('price-input').value = totalPrice;
 };
 
 const getCurrentData = e => {
@@ -25,8 +31,11 @@ const getCurrentData = e => {
 
   const counter = document.querySelector('#counter');
   let count = parseInt(counter.dataset.count, 10) + offset;
-  console.log(count);
   updateCount(counter, count);
+
+  // what is current price?
+  const totalPrice = count * unitPriceCents;
+  setInputPrice(totalPrice);
 };
 
 const setEventListener = button => {
