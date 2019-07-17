@@ -10,6 +10,7 @@ Set values of:
     input[price-input]-value, input[submit]-value
 Then make sure u can't go below 1 offset/person in display
 */
+const minus = document.querySelector('.minus');
 
 const updateCount = (counter, count) => {
   counter.dataset.count = count;
@@ -23,6 +24,17 @@ const setInputPrice = totalPrice => {
 
 const setButtonPrice = totalPrice => {
   document.getElementById('submit').value = `Pay ${totalPrice / 100}€`;
+};
+
+const disableMinus = count => {
+  if (count < 2) {
+    // minus.removeAttribute('href');
+    minus.disabled = true;
+    console.log(minus);
+  } else {
+    // minus.setAttribute('href', '#');
+    minus.disabled = true;
+  }
 };
 
 const getCurrentData = e => {
@@ -41,6 +53,8 @@ const getCurrentData = e => {
   const totalPrice = count * unitPriceCents;
   setInputPrice(totalPrice);
   setButtonPrice(totalPrice);
+
+  disableMinus(count);
 };
 
 const setEventListener = button => {
