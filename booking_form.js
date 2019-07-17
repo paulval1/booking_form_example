@@ -21,6 +21,10 @@ const setInputPrice = totalPrice => {
   document.getElementById('price-input').value = totalPrice;
 };
 
+const setButtonPrice = totalPrice => {
+  document.getElementById('submit').value = `Pay ${totalPrice / 100}€`;
+};
+
 const getCurrentData = e => {
   // offset is number to increment/decrement, here 1
   let offset = e.currentTarget.dataset.offset;
@@ -36,6 +40,7 @@ const getCurrentData = e => {
   // what is current price?
   const totalPrice = count * unitPriceCents;
   setInputPrice(totalPrice);
+  setButtonPrice(totalPrice);
 };
 
 const setEventListener = button => {
