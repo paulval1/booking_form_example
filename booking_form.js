@@ -10,14 +10,23 @@ Set values of:
 
 */
 
+const updateCount = (counter, count) => {
+  counter.dataset.count = count;
+  counter.innerText = count;
+};
+
 const getCurrentData = e => {
+  // offset is number to increment/decrement, here 1
   let offset = e.currentTarget.dataset.offset;
   offset = parseInt(offset, 10);
-  console.log(offset);
 
-  let priceCents = document.querySelector('#price').dataset.amountCents;
-  priceCents = parseInt(priceCents, 10);
-  console.log(priceCents);
+  let unitPriceCents = document.querySelector('#price').dataset.amountCents;
+  unitPriceCents = parseInt(unitPriceCents, 10);
+
+  const counter = document.querySelector('#counter');
+  let count = parseInt(counter.dataset.count, 10) + offset;
+  console.log(count);
+  updateCount(counter, count);
 };
 
 const setEventListener = button => {
