@@ -45,14 +45,16 @@ const getCurrentData = e => {
   let offset = btn.dataset.offset;
   offset = parseInt(offset, 10);
 
+  // get unit price in cents
   let unitPriceCents = document.querySelector('#price').dataset.amountCents;
   unitPriceCents = parseInt(unitPriceCents, 10);
 
+  // count number of participants
   const counter = document.querySelector('#counter');
   let count = parseInt(counter.dataset.count, 10) + offset;
   // updateCount(counter, count);
 
-  // check if offset < 2 and if so stop everything
+  // check if participants < 1 and if so stop everything
   if (btn.classList.contains('minus')) {
     if (count < 1) {
       console.log(count);
