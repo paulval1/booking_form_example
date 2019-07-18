@@ -1,4 +1,4 @@
-# booking_form_example
+# Booking From Example
 
 Make a booking form dynamic by updating counter, price displayed on booking form, and value in cents of read only input.
 
